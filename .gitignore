@@ -1,0 +1,33 @@
+# Node modules
+node_modules/
+
+# Environment files
+.env
+.env.local
+
+# OS files
+.DS_Store
+
+# Logs
+logs
+.log
+
+# VSCode settings
+.vscode/
+
+# Builds output
+dist/
+build/
+
+# Dependency directories
+.pnpm/
+.yarn/
+
+# Coverage reports
+coverage/
+
+# Optional: Mac system files
+*.DS_Store
+
+# Optional: Ignore next.js build cache
+.next/
