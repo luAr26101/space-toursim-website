@@ -1,0 +1,25 @@
+{
+  "name": "space-tourism-website",
+  "version": "1.0.0",
+  "description": "Skillbrain project",
+  "keywords": [
+    "html",
+    "css",
+    "javascript"
+  ],
+  "homepage": "https://github.com/luAr26101/space-toursim-website#readme",
+  "bugs": {
+    "url": "https://github.com/luAr26101/space-toursim-website/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luAr26101/space-toursim-website.git"
+  },
+  "license": "ISC",
+  "author": "Sirb Raul Cosmin",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}

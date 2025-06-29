@@ -1,3 +1,8 @@
+# Design files
+*.sketch
+*.fig
+*.xd
+
 # Node modules
 node_modules/
 
