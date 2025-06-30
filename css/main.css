@@ -9,12 +9,12 @@
   --clr-white: 0 0% 100%;
 
   /* font-sizes */
-  --fs-900: 9rem;
-  --fs-800: 6.25rem;
-  --fs-700: 3.5rem;
-  --fs-600: 2rem;
+  --fs-900: clamp(5rem, 8vw + 1rem, 9.375rem);
+  --fs-800: 3.5rem;
+  --fs-700: 1.5rem;
+  --fs-600: 1rem;
   --fs-500: 1.75rem;
-  --fs-400: 1.125rem;
+  --fs-400: 0.9375rem;
   --fs-300: 1rem;
   --fs-200: 0.875rem;
 
@@ -22,6 +22,26 @@
   --ff-serif: "Bellefair", serif;
   --ff-sans-cond: "Barlow Condensed", sans-serif;
   --ff-sans-normal: "Barlow", sans-serif;
+}
+
+@media (min-width: 35em) {
+  :root {
+    /* font-sizes */
+    --fs-800: 5rem;
+    --fs-700: 2.5rem;
+    --fs-600: 1.5rem;
+    --fs-400: 1rem;
+  }
+}
+
+@media (min-width: 45em) {
+  :root {
+    /* font-sizes */
+    --fs-800: 6.25rem;
+    --fs-700: 3.5rem;
+    --fs-600: 2rem;
+    --fs-400: 1.125rem;
+  }
 }
 
 /*--------------------------------------------------------------
@@ -83,6 +103,9 @@ body {
   color: hsl(var(--clr-white));
   min-height: 100vh;
   line-height: 1.5;
+  display: grid;
+  grid-template-rows: min-content 1fr;
+  margin: 0;
 }
 
 /* Set shorter line heights on headings and interactive elements */
@@ -165,6 +188,10 @@ textarea:not([rows]) {
   gap: var(--gap, 1rem);
 }
 
+.d-block {
+  display: block;
+}
+
 /* Control the flow and rhythm between direct sibling elements */
 
 /* https://piccalil.li/blog/flow-utility/ */
@@ -183,6 +210,41 @@ textarea:not([rows]) {
   max-width: 80rem;
   margin-inline: auto;
   padding-inline: 2em;
+}
+
+.grid-container {
+  display: grid;
+  text-align: center;
+  place-items: center;
+  padding-inline: 1rem;
+}
+
+.grid-container * {
+  max-width: 50ch;
+}
+
+@media (min-width: 45em) {
+  .grid-container {
+    text-align: left;
+    column-gap: var(--container-gap, 2rem);
+    grid-template-columns: minmax(2em, 1fr) repeat(2, minmax(0, 40rem)) minmax(
+        2em,
+        1fr
+      );
+  }
+
+  .grid-container > *:first-child {
+    grid-column: 2;
+  }
+
+  .grid-container > *:last-child {
+    grid-column: 3;
+  }
+
+  .grid-container--home {
+    padding-bottom: max(6rem, 20vh);
+    align-items: end;
+  }
 }
 
 .sr-only {
@@ -320,8 +382,9 @@ textarea:not([rows]) {
 --------------------------------------------------------------*/
 
 .large-button {
+  font-size: 2rem;
   position: relative;
-  display: grid;
+  display: inline-grid;
   z-index: 1;
   place-items: center;
   padding: 0 2em;
@@ -409,6 +472,7 @@ textarea:not([rows]) {
 }
 
 .number-indicators > * {
+  /* TODO: numbers indicator for number 1 is not a perfect circle. FIX IT!!! */
   display: grid;
   place-items: center;
   aspect-ratio: 1;
@@ -431,4 +495,28 @@ textarea:not([rows]) {
   background-color: hsl(var(--clr-white) / 1);
   border-color: hsl(var(--clr-white) / 1);
   color: hsl(var(--clr-dark));
+}
+
+/*--------------------------------------------------------------
+# BACKGROUNDS
+--------------------------------------------------------------*/
+body {
+  background-size: cover;
+  background-position: bottom center;
+}
+.home {
+  background-image: url(../assets/home/background-home-mobile.jpg);
+}
+
+@media (min-width: 35em) {
+  .home {
+    background-position: center center;
+    background-image: url(../assets/home/background-home-tablet.jpg);
+  }
+}
+
+@media (min-width: 45em) {
+  .home {
+    background-image: url(../assets/home/background-home-desktop.jpg);
+  }
 }

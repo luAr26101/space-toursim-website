@@ -36,3 +36,6 @@ coverage/
 
 # Optional: Ignore next.js build cache
 .next/
+
+# Starter code folder from front end mentor
+starter-code/
