@@ -27,8 +27,19 @@
           class="logo"
         />
       </div>
-      <!-- <nav>
-        <ul class="primary-navigation underline-indicators flex">
+      <button
+        class="mobile-nav-toggle"
+        aria-controls="primary-navigation"
+        aria-expanded="false"
+      >
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav>
+        <ul
+          id="primary-navigation"
+          class="primary-navigation underline-indicators flex"
+          data-visible="false"
+        >
           <li class="active">
             <a
               href="index.html"
@@ -58,7 +69,7 @@
             >
           </li>
         </ul>
-      </nav> -->
+      </nav>
     </header>
     <div class="grid-container grid-container--home">
       <div>
