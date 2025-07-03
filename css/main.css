@@ -219,6 +219,10 @@ textarea:not([rows]) {
   padding-inline: 2em;
 }
 
+.hidden {
+  display: none;
+}
+
 .sr-only {
   position: absolute;
   width: 1px;
