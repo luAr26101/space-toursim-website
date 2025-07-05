@@ -682,7 +682,10 @@ body {
 .grid-container--destination > picture {
   grid-area: image;
   max-width: 60%;
+  align-self: start;
 }
+
+/* scrollbar gutter - lookup on MDN to prevent the jump between scrollbar and no scrollbar */
 
 .grid-container--destination > .tab-list {
   grid-area: tabs;
@@ -785,8 +788,7 @@ body {
       ". image content .";
   }
 
-  .grid-container--destination > picture,
-  .grid-container--crew > picture {
+  .grid-container--destination > picture {
     max-width: 90%;
   }
 
@@ -797,19 +799,26 @@ body {
 
   .grid-container--crew {
     --flow-space: 2rem;
+    justify-items: start;
+    grid-template-columns: minmax(2em, 1fr) minmax(0, 47rem) minmax(0, 33rem) minmax(
+        2em,
+        1fr
+      );
     grid-template-areas:
       ". title title ."
       ". content image ."
       ". tabs image .";
   }
 
-  .grid-container--crew > .dot-indicators,
+  /* .grid-container--crew > .dot-indicators,
   .grid-container--crew > .crew-details {
     justify-self: start;
-  }
+  } */
 
   .grid-container--crew > picture {
     /* TODO: Check this on very large resolutions */
     align-self: end;
+    max-width: 100%;
+    /* grid-column: span 2; */
   }
 }
