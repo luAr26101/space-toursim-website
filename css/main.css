@@ -649,6 +649,23 @@ body {
   }
 }
 
+.technology {
+  background-image: url(../assets/technology/background-technology-mobile.jpg);
+}
+
+@media (min-width: 35em) {
+  .technology {
+    background-position: center center;
+    background-image: url(../assets/technology/background-technology-tablet.jpg);
+  }
+}
+
+@media (min-width: 45em) {
+  .technology {
+    background-image: url(../assets/technology/background-technology-desktop.jpg);
+  }
+}
+
 /*--------------------------------------------------------------
 # LAYOUT
 --------------------------------------------------------------*/
@@ -669,7 +686,7 @@ body {
   grid-area: title;
 }
 
-/* Destination layout */
+/* destination layout */
 .grid-container--destination {
   --flow-space: 2rem;
   grid-template-areas:
@@ -732,6 +749,35 @@ body {
 
 .crew-details h2 {
   color: hsl(var(--clr-white) / 0.5);
+}
+
+/* technology layout */
+.grid-container--technology {
+  --flow-space: 2rem;
+  padding-inline: 0;
+  grid-template-areas:
+    "title"
+    "image"
+    "tabs"
+    "content";
+}
+
+.grid-container--technology > .number-indicators,
+.grid-container--technology > .technology-details,
+.grid-container--technology > .numbered-title {
+  padding-inline: 1rem;
+}
+
+.grid-container--technology > .number-indicators {
+  grid-area: tabs;
+}
+
+.grid-container--technology > .technology-details {
+  grid-area: content;
+}
+
+.grid-container--technology > picture {
+  grid-area: image;
 }
 
 @media (min-width: 35em) {
@@ -820,5 +866,26 @@ body {
     align-self: end;
     max-width: 100%;
     /* grid-column: span 2; */
+  }
+
+  .grid-container--technology {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+}
+
+@media (min-width: 68.75em) {
+  .grid-container--technology {
+    grid-template-columns:
+      minmax(2em, 1fr) 6rem minmax(0, 37rem) minmax(0, 37rem)
+      minmax(0, 1fr);
+    grid-template-areas:
+      ". title title title title"
+      ". tabs content image image";
+    text-align: left;
+  }
+
+  .grid-container--technology .number-indicators {
+    flex-direction: column;
   }
 }
