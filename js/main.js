@@ -228,6 +228,62 @@ if (data) {
         break;
       case "crew":
         mainEl.className = "grid-container grid-container--crew flow";
+        mainEl.innerHTML = `
+          <h1 class="numbered-title">
+            <span aria-hidden="true">02</span> Meet your crew
+          </h1>
+        `;
+        const dots = document.createElement("div");
+        dots.className = "dot-indicators flex";
+        dots.setAttribute("role", "tablist");
+        dots.setAttribute("aria-label", "crew member list");
+
+        data[pageName].forEach((member, index) => {
+          const role = member.role.split(" ")[0].toLowerCase();
+          const button = document.createElement("button");
+          button.setAttribute("aria-selected", index === 0 ? true : false);
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-controls", `${role}-tab`);
+          button.setAttribute("data-image", `${role}-image`);
+          button.setAttribute("tabindex", index === 0 ? 0 : -1);
+          button.innerHTML = `<span class="sr-only">${member.name}</span>`;
+          dots.appendChild(button);
+        });
+        mainEl.appendChild(dots);
+        data[pageName].forEach((member, index) => {
+          const article = document.createElement("article");
+          article.className = `crew-details flow ${index !== 0 && "hidden"}`;
+          article.id = `${member.role.split(" ")[0].toLowerCase()}-tab`;
+          article.setAttribute("role", "tabpanel");
+          article.setAttribute("tabindex", 0);
+          article.innerHTML = `
+            <header class="flow flow--space-small">
+              <h2 class="fs-600 ff-serif uppercase">${member.role}</h2>
+              <p class="fs-700 ff-serif uppercase">${member.name}</p>
+            </header>
+            <p>
+              ${member.bio}
+            </p>
+          `;
+          mainEl.appendChild(article);
+        });
+
+        data[pageName].forEach((member, index) => {
+          const picture = document.createElement("picture");
+          picture.id = `${member.role.split(" ")[0].toLowerCase()}-image`;
+          picture.innerHTML = `
+            <source
+              srcset="${member.images.webp}"
+              type="image/webp"
+            />
+            <img
+              src="${member.images.png}
+              alt="${member.name}"
+              class="${index === 0 ? "" : "hidden"}"
+            />
+          `;
+          mainEl.appendChild(picture);
+        });
         break;
       case "technology":
         mainEl.className = "grid-container grid-container--technology flow";
