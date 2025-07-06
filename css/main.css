@@ -863,7 +863,7 @@ body {
 
   .grid-container--crew > picture {
     /* TODO: Check this on very large resolutions */
-    align-self: end;
+    /* align-self: end; */
     max-width: 100%;
     /* grid-column: span 2; */
   }
