@@ -97,8 +97,11 @@ async function getData() {
     return null;
   }
 }
+
 const data = await getData();
+
 console.log(data);
+
 if (data) {
   // Render Navigation items
   const renderNavigation = (data) => {
@@ -287,6 +290,66 @@ if (data) {
         break;
       case "technology":
         mainEl.className = "grid-container grid-container--technology flow";
+        mainEl.innerHTML = `
+          <h1 class="numbered-title">
+            <span aria-hidden="true">03</span> Space launch 101
+          </h1>       
+        `;
+        const numberedDots = document.createElement("div");
+        numberedDots.className = "number-indicators flex";
+        numberedDots.setAttribute("role", "tablist");
+        numberedDots.setAttribute("aria-label", "technology list");
+
+        data[pageName].forEach((tech, index) => {
+          const techName = tech.name.split(" ")[0].toLowerCase();
+          const button = document.createElement("button");
+          button.setAttribute("aria-selected", index === 0 ? true : false);
+          button.setAttribute("role", "tab");
+          button.setAttribute("aria-controls", `${techName}-tab`);
+          button.setAttribute("data-image", `${techName}-image`);
+          button.setAttribute("tabindex", index === 0 ? 0 : -1);
+          button.innerHTML = `${index + 1}<span class="sr-only">${
+            tech.name
+          }</span>`;
+          numberedDots.appendChild(button);
+        });
+        mainEl.appendChild(numberedDots);
+
+        data[pageName].forEach((tech, index) => {
+          const article = document.createElement("article");
+          article.className = `technology-details flow ${
+            index !== 0 && "hidden"
+          }`;
+          article.id = `${tech.name.split(" ")[0].toLowerCase()}-tab`;
+          article.setAttribute("role", "tabpanel");
+          article.setAttribute("tabindex", 0);
+          article.innerHTML = `
+            <header class="flow flow--space-small">
+              <h2 class="fs-600 ff-serif uppercase">The terminology...</h2>
+              <p class="fs-700 ff-serif uppercase">${tech.name}</p>
+            </header>
+            <p>
+              ${tech.description}
+            </p>
+          `;
+          mainEl.appendChild(article);
+        });
+        data[pageName].forEach((tech, index) => {
+          const picture = document.createElement("picture");
+          picture.id = `${tech.name.split(" ")[0].toLowerCase()}-image`;
+          picture.innerHTML = `
+            <source
+              srcset="${tech.images.portrait}"
+              media="(min-width: 68.75em)"
+            />
+            <img
+              src="${tech.images.landscape}"
+              alt="${tech.name}"
+              class="${index === 0 ? "" : "hidden"}"
+            />
+          `;
+          mainEl.appendChild(picture);
+        });
         break;
     }
 
@@ -309,5 +372,3 @@ if (data) {
   document.body.style.alignItems = "center";
   document.body.textContent = "Unable to load page data.";
 }
-
-// Main tabs
